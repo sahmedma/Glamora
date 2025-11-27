@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamora - We Built the Future of Salon Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Logo/Brand Name */
+        .brand-logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .brand-logo span {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animated Background */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+            animation: moveBackground 15s ease-in-out infinite;
+        }
+
+        @keyframes moveBackground {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(5deg); }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            25% { transform: translateY(-50px) translateX(30px) scale(1.1); }
+            50% { transform: translateY(-100px) translateX(-30px) scale(0.9); }
+            75% { transform: translateY(-50px) translateX(30px) scale(1.05); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 1400px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            animation: fadeInDown 1s ease-out;
+            text-transform: uppercase;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tagline {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 1.3rem 3.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 10rem 2rem;
+            background: linear-gradient(180deg, #000 0%, #0a0a1a 100%);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #10b981;
+        }
+
+        .section-header h2 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .section-header p {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 3.5rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            transform-origin: left;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 30px 80px rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.5);
+        }
+
+        .feature-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 10rem 2rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .cta-content p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-content .btn-primary {
+            background: #ffffff;
+            color: #059669;
+        }
+
+        .cta-content .btn-primary:hover {
+            background: #f0fdf4;
+        }
+
+                    @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                padding: 5rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 2.5rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+        }
+
+        /* Calendly Modal Styles */
+        .calendly-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .calendly-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .calendly-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            height: 90vh;
+            max-height: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 100px rgba(16, 185, 129, 0.5);
+            animation: slideUp 0.4s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calendly-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 28px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .calendly-close:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+            transform: rotate(90deg);
+        }
+
+        .calendly-inline-widget {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .calendly-modal-content {
+                width: 95%;
+                height: 85vh;
+                border-radius: 15px;
+            }
+            
+            .calendly-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="brand-logo">
+        <span>💇</span>
+        <span>Glamora</span>
+    </a>
+
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="badge">✨ Proudly Developed In-House</div>
+            <h1>
+                We Built The<br>
+                <span class="gradient-text">Ultimate Salon App</span>
+            </h1>
+            <p class="tagline">
+                From concept to code, we've engineered a revolutionary booking platform that transforms how salons connect with clients. Built by experts, trusted by thousands.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="openCalendly()">See It In Action</button>
+                <button class="btn btn-secondary" onclick="openCalendlyInlineModal()">Talk To Our Team</button>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">Fully</div>
+                    <div class="stat-label">AI powered booking</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Real time</div>
+                    <div class="stat-label">Bookings</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Easy to Host</div>
+                    <div class="stat-label">App</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-header">
+            <div class="section-badge">🚀 Built From The Ground Up</div>
+            <h2>Engineered For Excellence</h2>
+            <p>Every feature meticulously designed and developed to solve real salon challenges. This is what happens when innovation meets expertise.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Your Custom-Branded App</h3>
+                <p>We developed a white-label solution that puts YOUR brand front and center. Custom logo, colors, and app name on both iOS and Android. It's our technology, your identity.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Booking Engine</h3>
+                <p>Our proprietary AI handles bookings 24/7 through chat and voice. We trained it on thousands of salon conversations to understand your clients perfectly. It's like having a receptionist who never sleeps.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning-Fast Dashboard</h3>
+                <p>We obsessed over every millisecond. Manage services, staff, inventory, and analytics with a dashboard so intuitive, you'll master it in minutes. Real-time updates, zero lag.</p>
+            </div>
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/s-ahmedma/new-meeting', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Smart Payment Processing</h3>
+                <p>Built-in secure payments with automatic split calculations, tips, and refunds. We integrated with all major processors and handled the compliance headaches so you don't have to.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Intelligent Marketing Suite</h3>
+                <p>We developed automated campaigns that actually work. Push notifications, email sequences, loyalty programs, and personalized promotions based on client behavior data.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise-Grade Security</h3>
+                <p>We built this with bank-level encryption and compliance standards. Your data and your clients' data are protected by the same security protocols we'd demand for ourselves.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready To Experience What We Built?</h2>
+            <p>Join thousands of salons already thriving on our platform. We didn't just develop an app—we created the future of salon management.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="openCalendlyPopup(); return false;">Start Your Free Trial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendly Modal -->
+    <div class="calendly-modal" id="calendlyModal">
+        <div class="calendly-modal-content">
+            <button class="calendly-close" onclick="closeCalendly()">×</button>
+            <div id="calendlyInlineWidget" style="min-width:320px;height:100%;width:100%;"></div>
+        </div>
+    </div>
+
+    <!-- Calendly CSS and JS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+    
+    <script>
+        // Open Calendly popup widget for "Talk To Our Team"
+        function openCalendlyInlineModal() {
+            if (window.Calendly) {
+                Calendly.initPopupWidget({
+                    url: 'https://calendly.com/s-ahmedma/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1'
+                });
+            } else {
+                // Fallback if Calendly hasn't loaded yet
+                setTimeout(function() {
+                    if (window.Calendly) {
+                        Calendly.initPopupWidget({
+                            url: 'https://calendly.com/s-ahmedma/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1'
+                        });
+                    } else {
+                        // Final fallback - open in new window
+                        window.open('https://calendly.com/s-ahmedma/new-meeting', '_blank');
+                    }
+                }, 1000);
+            }
+            return false;
+        }
+
+        // Open Calendly popup widget for "Start Your Free Trial"
+        function openCalendlyPopup() {
+            if (window.Calendly) {
+                Calendly.initPopupWidget({
+                    url: 'https://calendly.com/s-ahmedma/new-meeting'
+                });
+            } else {
+                setTimeout(function() {
+                    if (window.Calendly) {
+                        Calendly.initPopupWidget({
+                            url: 'https://calendly.com/s-ahmedma/new-meeting'
+                        });
+                    } else {
+                        window.open('https://calendly.com/s-ahmedma/new-meeting', '_blank');
+                    }
+                }, 1000);
+            }
+            return false;
+        }
+
+        // Calendly popup function - opens in centered popup window for other buttons
+        function openCalendly() {
+            const width = 900;
+            const height = 700;
+            const left = (screen.width - width) / 2;
+            const top = (screen.height - height) / 2;
+            
+            const popup = window.open(
+                'https://calendly.com/s-ahmedma/app-demo',
+                'calendly_popup',
+                `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no`
+            );
+            
+            if (popup) {
+                popup.focus();
+            } else {
+                window.open('https://calendly.com/s-ahmedma/app-demo', '_blank');
+            }
+        }
+
+        // Close Calendly modal
+        function closeCalendly() {
+            const modal = document.getElementById('calendlyModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('calendlyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCalendly();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCalendly();
+            }
+        });
+
+        // Smooth scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Interactive button effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.6);
+                    width: 100px;
+                    height: 100px;
+                    margin-top: -50px;
+                    margin-left: -50px;
+                    animation: ripple 0.6s;
+                    pointer-events: none;
+                `;
+                ripple.style.left = e.offsetX + 'px';
+                ripple.style.top = e.offsetY + 'px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
