@@ -636,7 +636,7 @@
                 From concept to code, we've engineered a revolutionary booking platform that transforms how salons connect with clients. Built by experts, trusted by thousands.
             </p>
             <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="openCalendly()">See It In Action</button>
+                <button class="btn btn-primary" >See It In Action</button>
                 <button class="btn btn-secondary" onclick="openCalendlyInlineModal()">Talk To Our Team</button>
             </div>
             
